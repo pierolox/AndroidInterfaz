@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">proyectoAndroid</string>
+    <string name="textIniciarSesion">Iniciar Sesión</string>
+    <string name="textMenuIniciarSesion">Iniciar Sesión</string>
+    <string name="TextCorreoLogin">Ingrese su correo electrónico</string>
+    <string name="textContraenaLogin" />
+    <string name="textContrasenaLogin2">Ingrese su contraseña</string>
+    <string name="textBtnIniciarSesion">Iniciar Sesión</string>
+    <string name="textMenuIniciarSesion2">Menú de Inicio de Sesión</string>
 </resources>

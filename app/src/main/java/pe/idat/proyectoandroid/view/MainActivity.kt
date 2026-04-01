@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
             insets
         }
 
-        binding.btnlogin.setOnClickListener(this)
+        binding.btnLogin.setOnClickListener(this)
 
         binding.btnRegistro.setOnClickListener {
             startActivity(Intent(this, RegistroActivity::class.java))

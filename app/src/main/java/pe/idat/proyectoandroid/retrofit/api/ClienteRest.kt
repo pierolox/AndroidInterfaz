@@ -11,6 +11,6 @@ interface ClienteRest {
     @POST("usuario/login")
     fun login(@Body request: LoginRequest): Call<LoginResponse>
 
-    @POST("usuario/registrar")
+    @POST("usuario")
     fun registrar(@Body request: RegistroRequest): Call<String>
 }
