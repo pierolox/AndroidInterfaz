@@ -1,6 +1,7 @@
 package pe.idat.proyectoandroid.view
 
 import android.os.Bundle
+import android.util.Patterns
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +16,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RegistroActivity : AppCompatActivity(), View.OnClickListener{
+class RegistroActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityRegistroBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,49 +40,45 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener{
     }
 
     private fun registrar() {
-
         val nombre = binding.etNombre.text.toString().trim()
         val correo = binding.etCorreo.text.toString().trim()
         val password = binding.etPassword.text.toString().trim()
 
+        // PB02: Validaciones
         if (nombre.isEmpty()) {
             binding.etNombre.requestFocus()
             AppMensaje.enviarMensaje(binding.root, "Ingrese su nombre", TipoMensaje.ERROR)
             return
         }
 
-        if (correo.isEmpty()) {
+        if (correo.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
             binding.etCorreo.requestFocus()
-            AppMensaje.enviarMensaje(binding.root, "Ingrese su correo", TipoMensaje.ERROR)
+            AppMensaje.enviarMensaje(binding.root, "Ingrese un correo válido", TipoMensaje.ERROR)
             return
         }
 
-        if (password.isEmpty()) {
+        if (password.isEmpty() || password.length < 6) {
             binding.etPassword.requestFocus()
-            AppMensaje.enviarMensaje(binding.root, "Ingrese su contraseña", TipoMensaje.ERROR)
+            AppMensaje.enviarMensaje(binding.root, "La contraseña debe tener al menos 6 caracteres", TipoMensaje.ERROR)
             return
         }
 
         val request = RegistroRequest(nombre, correo, password)
 
         ClienteRetrofit.api.registrar(request).enqueue(object : Callback<String> {
-
             override fun onResponse(call: Call<String>, response: Response<String>) {
-
                 if (response.isSuccessful) {
-
+                    // PB03: Mensaje claro de confirmación
                     AppMensaje.enviarMensaje(
                         binding.root,
                         "Usuario registrado correctamente",
                         TipoMensaje.SUCCESS
                     )
-
                     finish() // volver al login
-
                 } else {
                     AppMensaje.enviarMensaje(
                         binding.root,
-                        "Error al registrar",
+                        "Error al registrar. Intente nuevamente",
                         TipoMensaje.ERROR
                     )
                 }
@@ -90,7 +87,7 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener{
             override fun onFailure(call: Call<String>, t: Throwable) {
                 AppMensaje.enviarMensaje(
                     binding.root,
-                    "Error de conexión",
+                    "Error de conexión con el servidor",
                     TipoMensaje.ERROR
                 )
             }
