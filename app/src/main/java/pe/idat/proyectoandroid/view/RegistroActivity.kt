@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import pe.idat.proyectoandroid.databinding.ActivityRegistroBinding
 import pe.idat.proyectoandroid.retrofit.ClienteRetrofit
 import pe.idat.proyectoandroid.retrofit.request.RegistroRequest
+import pe.idat.proyectoandroid.retrofit.response.RegistroResponse
 import pe.idat.proyectoandroid.util.AppMensaje
 import pe.idat.proyectoandroid.util.TipoMensaje
 import retrofit2.Call
@@ -65,32 +66,40 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener {
 
         val request = RegistroRequest(nombre, correo, password)
 
-        ClienteRetrofit.api.registrar(request).enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                if (response.isSuccessful) {
-                    // PB03: Mensaje claro de confirmación
+        ClienteRetrofit.api.registrar(request)
+            .enqueue(object : Callback<RegistroResponse> {
+
+                override fun onResponse(
+                    call: Call<RegistroResponse>,
+                    response: Response<RegistroResponse>
+                ) {
+                    if (response.isSuccessful) {
+
+                        val usuario = response.body()
+
+                        AppMensaje.enviarMensaje(
+                            binding.root,
+                            "Usuario registrado: ${usuario?.nombre}",
+                            TipoMensaje.SUCCESS
+                        )
+
+                        finish()
+                    } else {
+                        AppMensaje.enviarMensaje(
+                            binding.root,
+                            "Error al registrar. Intente nuevamente",
+                            TipoMensaje.ERROR
+                        )
+                    }
+                }
+
+                override fun onFailure(call: Call<RegistroResponse>, t: Throwable) {
                     AppMensaje.enviarMensaje(
                         binding.root,
-                        "Usuario registrado correctamente",
-                        TipoMensaje.SUCCESS
-                    )
-                    finish() // volver al login
-                } else {
-                    AppMensaje.enviarMensaje(
-                        binding.root,
-                        "Error al registrar. Intente nuevamente",
+                        "Error de conexión con el servidor",
                         TipoMensaje.ERROR
                     )
                 }
-            }
-
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                AppMensaje.enviarMensaje(
-                    binding.root,
-                    "Error de conexión con el servidor",
-                    TipoMensaje.ERROR
-                )
-            }
-        })
+            })
     }
 }
