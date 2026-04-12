@@ -1,5 +1,6 @@
 package pe.idat.proyectoandroid.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -7,8 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import pe.idat.proyectoandroid.databinding.ActivityHomeBinding
-
-
 
 class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -27,11 +26,12 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             insets
         }
 
+        binding.fabAgregar.setOnClickListener {
+            val intent = Intent(this, CrearHabitoActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onClick(v: View?) {
-
     }
-
-
 }
