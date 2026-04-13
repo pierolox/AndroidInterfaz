@@ -7,9 +7,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import pe.idat.proyectoandroid.adapter.HabitoAdapter
+import pe.idat.proyectoandroid.data.HabitoData
 import pe.idat.proyectoandroid.databinding.ActivityHomeBinding
 
-class HomeActivity : AppCompatActivity(), View.OnClickListener {
+class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding;
 
@@ -26,12 +29,27 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             insets
         }
 
+        binding.rvHabitos.layoutManager = LinearLayoutManager(this)
+
         binding.fabAgregar.setOnClickListener {
             val intent = Intent(this, CrearHabitoActivity::class.java)
             startActivity(intent)
         }
     }
 
-    override fun onClick(v: View?) {
+    override fun onResume() {
+        super.onResume()
+
+        val lista = HabitoData.lista
+
+        if (lista.isEmpty()) {
+            binding.tvVacio.visibility = View.VISIBLE
+            binding.rvHabitos.visibility = View.GONE
+        } else {
+            binding.tvVacio.visibility = View.GONE
+            binding.rvHabitos.visibility = View.VISIBLE
+
+            binding.rvHabitos.adapter = HabitoAdapter(lista)
+        }
     }
 }
