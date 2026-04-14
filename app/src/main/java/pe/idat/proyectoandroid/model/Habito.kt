@@ -1,8 +1,8 @@
 package pe.idat.proyectoandroid.model
 
-data class Habito(
+data class Habito (
+    val id: Long? = null,
     val nombre: String,
-    val motivacion: String,
-    val recompensa: String,
-    val categoria: String
+    val categoriaId: Long,
+    val usuarioId: Long
 )

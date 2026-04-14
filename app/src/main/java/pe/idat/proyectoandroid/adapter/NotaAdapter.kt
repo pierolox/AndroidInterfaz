@@ -23,7 +23,7 @@ class NotaAdapter(private val lista: List<Nota>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val nota = lista[position]
-        holder.binding.tvNota.text = "${nota.titulo}\n${nota.contenido}"
+        holder.binding.tvNota.text = "${nota.nombre}\n${nota.contenido}"
     }
 
     override fun getItemCount() = lista.size

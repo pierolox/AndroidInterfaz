@@ -23,23 +23,9 @@
         android:id="@+id/rvCategorias"
         android:layout_width="405dp"
         android:layout_height="458dp"
-        app:layout_constraintBottom_toTopOf="@id/btnAgregar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitulo"
-        app:layout_constraintVertical_bias="0.782" />
-
-    <Button
-        android:id="@+id/btnAgregar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:backgroundTint="#000000"
-        android:text="Añadir categoría"
-        android:textColor="#F2A542"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnGuardarCategoria" />
 
     <ImageView
         android:id="@+id/btnBack"

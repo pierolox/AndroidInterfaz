@@ -1,9 +1,7 @@
 package pe.idat.proyectoandroid.model
 
-data class Nota(
+data class Categoria (
     val id: Long? = null,
     val nombre: String,
-    val contenido: String,
-    val fechaCreacion: String? = null,
     val usuarioId: Long
 )

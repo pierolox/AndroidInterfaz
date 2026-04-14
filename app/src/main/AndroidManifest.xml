@@ -14,18 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoAndroid"
         tools:targetApi="31">
+        <activity android:name=".view.CrearNotaActivity"/>
+        <activity android:name=".view.NotasActivity" />
+        <activity android:name=".view.CategoriaActivity" />
         <activity android:name=".view.CrearHabitoActivity"
             android:exported="false"/>
         <activity
             android:name=".view.HomeActivity"
-            android:exported="false"
+            android:exported="true"
             tools:ignore="Instantiatable" />
-        <activity
-            android:name=".view.MainActivity"
+        <activity android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

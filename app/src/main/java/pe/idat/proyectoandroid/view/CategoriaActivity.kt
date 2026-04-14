@@ -20,12 +20,10 @@ class CategoriaActivity : AppCompatActivity() {
         binding.rvCategorias.layoutManager = LinearLayoutManager(this)
         binding.rvCategorias.adapter = CategoriaAdapter(CategoriaData.lista)
 
-        // BOTÓN VOLVER
         binding.btnBack.setOnClickListener {
             finish()
         }
 
-        // GUARDAR CATEGORÍA
         binding.btnGuardarCategoria.setOnClickListener {
 
             val nueva = binding.etNuevaCategoria.text.toString().trim()
@@ -36,9 +34,9 @@ class CategoriaActivity : AppCompatActivity() {
             }
 
             CategoriaData.lista.add(nueva)
+            binding.rvCategorias.adapter?.notifyDataSetChanged()
 
             binding.etNuevaCategoria.setText("")
-            binding.rvCategorias.adapter?.notifyDataSetChanged()
         }
     }
 }

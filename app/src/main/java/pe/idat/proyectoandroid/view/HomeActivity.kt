@@ -11,12 +11,17 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import pe.idat.proyectoandroid.R
 import pe.idat.proyectoandroid.adapter.HabitoAdapter
-import pe.idat.proyectoandroid.data.HabitoData
 import pe.idat.proyectoandroid.databinding.ActivityHomeBinding
+import pe.idat.proyectoandroid.model.Habito
+import pe.idat.proyectoandroid.retrofit.ClienteRetrofit
+import pe.idat.proyectoandroid.util.UsuarioSesion
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityHomeBinding;
+    private lateinit var binding: ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +39,7 @@ class HomeActivity : AppCompatActivity() {
         binding.rvHabitos.layoutManager = LinearLayoutManager(this)
 
         binding.fabAgregar.setOnClickListener {
-            val intent = Intent(this, CrearHabitoActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, CrearHabitoActivity::class.java))
         }
 
         binding.button.setOnClickListener {
@@ -44,7 +48,6 @@ class HomeActivity : AppCompatActivity() {
             popup.menuInflater.inflate(R.menu.menu_popup, popup.menu)
 
             popup.setOnMenuItemClickListener { item ->
-
                 when (item.itemId) {
 
                     R.id.op_notas -> {
@@ -60,6 +63,7 @@ class HomeActivity : AppCompatActivity() {
                     else -> false
                 }
             }
+
             popup.show()
         }
     }
@@ -67,16 +71,43 @@ class HomeActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        val lista = HabitoData.lista
-
-        if (lista.isEmpty()) {
+        if (UsuarioSesion.id == 0L) {
             binding.tvVacio.visibility = View.VISIBLE
             binding.rvHabitos.visibility = View.GONE
-        } else {
-            binding.tvVacio.visibility = View.GONE
-            binding.rvHabitos.visibility = View.VISIBLE
-
-            binding.rvHabitos.adapter = HabitoAdapter(lista)
+            return
         }
+
+        ClienteRetrofit.api.getHabitosPorUsuario(UsuarioSesion.id)
+            .enqueue(object : Callback<List<Habito>> {
+
+                override fun onResponse(
+                    call: Call<List<Habito>>,
+                    response: Response<List<Habito>>
+                ) {
+
+                    if (response.isSuccessful) {
+
+                        val lista = response.body() ?: emptyList()
+
+                        if (lista.isEmpty()) {
+                            binding.tvVacio.visibility = View.VISIBLE
+                            binding.rvHabitos.visibility = View.GONE
+                        } else {
+                            binding.tvVacio.visibility = View.GONE
+                            binding.rvHabitos.visibility = View.VISIBLE
+                            binding.rvHabitos.adapter = HabitoAdapter(lista)
+                        }
+
+                    } else {
+                        binding.tvVacio.visibility = View.VISIBLE
+                        binding.rvHabitos.visibility = View.GONE
+                    }
+                }
+
+                override fun onFailure(call: Call<List<Habito>>, t: Throwable) {
+                    binding.tvVacio.visibility = View.VISIBLE
+                    binding.rvHabitos.visibility = View.GONE
+                }
+            })
     }
 }

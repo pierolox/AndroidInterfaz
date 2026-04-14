@@ -22,7 +22,12 @@ class NotasActivity : AppCompatActivity() {
         binding.rvNotas.layoutManager = LinearLayoutManager(this)
 
         binding.fabAgregarNota.setOnClickListener {
-            startActivity(Intent(this, CrearNotaActivity::class.java))
+            val intent = Intent(this, CrearNotaActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnBack.setOnClickListener {
+            finish()
         }
     }
 

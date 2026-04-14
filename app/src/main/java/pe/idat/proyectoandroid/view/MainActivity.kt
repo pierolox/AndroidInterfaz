@@ -14,6 +14,7 @@ import pe.idat.proyectoandroid.retrofit.request.LoginRequest
 import pe.idat.proyectoandroid.retrofit.response.LoginResponse
 import pe.idat.proyectoandroid.util.AppMensaje
 import pe.idat.proyectoandroid.util.TipoMensaje
+import pe.idat.proyectoandroid.util.UsuarioSesion
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -74,6 +75,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
                 if (response.isSuccessful && response.body() != null) {
 
                     val user = response.body()
+
+                    UsuarioSesion.id = user?.id?.toLong() ?: 0
+                    println("LOGIN ID: ${UsuarioSesion.id}")
 
                     AppMensaje.enviarMensaje(
                         binding.root,
