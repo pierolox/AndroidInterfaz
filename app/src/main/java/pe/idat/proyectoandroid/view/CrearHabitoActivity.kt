@@ -23,7 +23,6 @@ class CrearHabitoActivity : AppCompatActivity() {
         binding = ActivityCrearHabitoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // ⚠️ LISTA TEMPORAL (luego la reemplazamos por backend)
         val categorias = listOf("Personal", "Trabajo", "Deporte")
 
         val adapter = ArrayAdapter(

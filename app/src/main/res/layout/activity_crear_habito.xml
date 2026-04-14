@@ -7,7 +7,6 @@
     android:background="#121111"
     android:padding="16dp">
 
-    <!-- BOTÓN VOLVER -->
     <ImageView
         android:id="@+id/btnBack"
         android:layout_width="24dp"
@@ -16,7 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- TÍTULO -->
     <TextView
         android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
@@ -29,7 +27,6 @@
         app:layout_constraintStart_toEndOf="@id/btnBack"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- FOTO -->
     <LinearLayout
         android:id="@+id/layoutFoto"
         android:layout_width="222dp"
@@ -56,9 +53,6 @@
             android:textColor="#F2A542" />
     </LinearLayout>
 
-    <!-- NOMBRE -->
-
-    <!-- MOTIVACIÓN -->
     <EditText
         android:id="@+id/etNombre"
         android:layout_width="0dp"

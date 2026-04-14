@@ -45,7 +45,6 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener {
         val correo = binding.etCorreo.text.toString().trim()
         val password = binding.etPassword.text.toString().trim()
 
-        // PB02: Validaciones
         if (nombre.isEmpty()) {
             binding.etNombre.requestFocus()
             AppMensaje.enviarMensaje(binding.root, "Ingrese su nombre", TipoMensaje.ERROR)

@@ -1,103 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context=".view.MainActivity">
+    android:background="#121111">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
+    <!-- TÍTULO -->
+    <TextView
+        android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="20dp" />
+        android:text="Bienvenido"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="80dp"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
+    <!-- SUBTÍTULO -->
+    <TextView
+        android:id="@+id/tvSub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+        android:text="Inicia sesión para continuar"
+        android:textSize="14sp"
+        android:textColor="#AAAAAA"
+        app:layout_constraintTop_toBottomOf="@id/tvTitulo"
+        app:layout_constraintStart_toStartOf="@id/tvTitulo"
+        android:layout_marginTop="8dp"/>
 
-    <Button
-        android:id="@+id/btnRegistro"
+    <!-- CORREO -->
+    <EditText
+        android:id="@+id/etusuario"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="624dp"
-        android:text="Crear cuenta"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
+        android:hint="Correo electrónico"
+        android:inputType="textEmailAddress"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#888888"
+        android:backgroundTint="#F2A542"
+        android:padding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSub"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="24dp"/>
 
+    <!-- PASSWORD -->
+    <EditText
+        android:id="@+id/etpassword"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#888888"
+        android:backgroundTint="#F2A542"
+        android:padding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/etusuario"
+        app:layout_constraintStart_toStartOf="@id/etusuario"
+        app:layout_constraintEnd_toEndOf="@id/etusuario"/>
+
+    <!-- BOTÓN LOGIN -->
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="24dp"
+        android:text="Iniciar sesión"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:backgroundTint="#F2A542"
+        app:layout_constraintTop_toBottomOf="@id/etpassword"
+        app:layout_constraintStart_toStartOf="@id/etpassword"
+        app:layout_constraintEnd_toEndOf="@id/etpassword"/>
+
+    <!-- TEXTO REGISTRO -->
     <TextView
         android:id="@+id/tvRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¿No tienes cuenta? Regístrate"
-        android:textColor="@color/info"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegistro"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="1.0" />
+        android:text="¿No tienes cuenta? Crear cuenta"
+        android:textColor="#F2A542"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/btnLogin"
+        app:layout_constraintStart_toStartOf="@id/btnLogin"
+        app:layout_constraintEnd_toEndOf="@id/btnLogin"
+        android:layout_marginTop="20dp"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/textMenuIniciarSesion2"
-        android:text="@string/textMenuIniciarSesion2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
-
-    <EditText
-        android:id="@+id/etusuario"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
-        android:ems="10"
-        android:hint="@string/TextCorreoLogin"
-        android:inputType="text"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <EditText
-        android:id="@+id/etpassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/textContrasenaLogin2"
-        android:inputType="text"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etusuario" />
-
+    <!-- BOTÓN REGISTRO -->
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnRegistro"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="@string/textBtnIniciarSesion"
-        android:text="@string/textBtnIniciarSesion"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etpassword" />
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:text="Crear cuenta"
+        android:textColor="#F2A542"
+        android:backgroundTint="#1E1E1E"
+        app:layout_constraintTop_toBottomOf="@id/tvRegistro"
+        app:layout_constraintStart_toStartOf="@id/tvRegistro"
+        app:layout_constraintEnd_toEndOf="@id/tvRegistro"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

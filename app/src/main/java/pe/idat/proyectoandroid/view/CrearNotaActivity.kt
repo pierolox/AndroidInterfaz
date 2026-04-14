@@ -42,7 +42,6 @@ class CrearNotaActivity : AppCompatActivity() {
                 usuarioId = UsuarioSesion.id
             )
 
-            // 🔥 ENVIAR AL BACKEND
             ClienteRetrofit.api.crearNota(nota)
                 .enqueue(object : Callback<Nota> {
 
