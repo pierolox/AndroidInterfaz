@@ -47,8 +47,8 @@ class HomeActivity : AppCompatActivity() {
 
                 when (item.itemId) {
 
-                    R.id.op_metas -> {
-                        startActivity(Intent(this, MetasCompletadasActivity::class.java))
+                    R.id.op_notas -> {
+                        startActivity(Intent(this, NotasActivity::class.java))
                         true
                     }
 
@@ -57,15 +57,9 @@ class HomeActivity : AppCompatActivity() {
                         true
                     }
 
-                    R.id.op_notas -> {
-                        startActivity(Intent(this, NotasActivity::class.java))
-                        true
-                    }
-
                     else -> false
                 }
             }
-
             popup.show()
         }
     }

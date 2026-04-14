@@ -1,4 +1,0 @@
-package pe.idat.proyectoandroid.view
-
-class MetasCompletadasActivity {
-}

@@ -1,0 +1,43 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121111">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#F2A542"
+            android:hint="Título de la nota"
+            android:minHeight="48dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#888888" />
+
+        <EditText
+            android:id="@+id/etContenido"
+            android:hint="¿Cómo avanza el objetivo?"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#888888"
+            android:backgroundTint="#F2A542"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:gravity="top"
+            android:inputType="textMultiLine"/>
+
+        <Button
+            android:id="@+id/btnGuardarNota"
+            android:text="Crear nota"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#F2A542"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</ScrollView>
